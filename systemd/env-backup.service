@@ -1,0 +1,14 @@
+[Unit]
+Description=Encrypted .env backup to Google Drive (restic)
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Install: copy/symlink this unit, set ExecStart to the checkout (or ~/bin
+# wrapper), export ENV_BACKUP_FILES for your project, then:
+#   systemctl --user daemon-reload && systemctl --user enable --now env-backup.timer
+# Example:
+# ExecStart=%h/src/linux-gdrive-dotenv-backup-recovery/env-backup.sh backup
+# Environment=ENV_BACKUP_FILES=%h/my-app/.env %h/my-app/apps/api/.env
+ExecStart=%h/bin/env-backup.sh backup
+Nice=10
